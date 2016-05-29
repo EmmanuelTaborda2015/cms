@@ -55,5 +55,5 @@
 </div>
 
 <div class="btn-toolbar">
-    <?= anchor('menu/index', 'Volver', 'class="btn btn-primary"'); ?>
+    <?= anchor('menu/index', "<i class='icon-fast-backward icon-white'></i> Volver", 'class="btn btn-primary"'); ?>
 </div>

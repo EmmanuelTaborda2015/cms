@@ -29,4 +29,5 @@
 <div>
     <p><strong>Nombre:</strong> <?= $this->session->userdata('user') ?></p>
     <p><strong>Perfil:</strong> <?= $this->session->userdata('profile_name') ?></p>
+    <?= anchor('home/change_password_form', 'Cambiar contraseña', array('class'=>'btn btn-primary')); ?>
 </div>

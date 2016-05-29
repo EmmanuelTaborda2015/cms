@@ -4,6 +4,7 @@
 
 <div class="hero-unit">
     <h1>Noticias recientes</h1>
+    
     <?php foreach ($articles as $article): ?>
     <hr>
     <div class="pull-left">
@@ -17,8 +18,9 @@
         <!--<?= $article->punctuation ?>-->
     </div>
     <div class="pull-left">
-        <h2><?= $article->title ?></h2>
-        <h3>
+        <h2 class='text-info'><?= $article->title ?></h2>
+        <p>
+            <i class='icon-calendar'></i>
             <?php
             if ($article->created == $article->updated):
                 $date = date("d/m/Y - H:i", strtotime($article->created));
@@ -28,7 +30,7 @@
                 echo "Modificado el $date";
             endif;
             ?>        
-        </h3>
+        </p>
     </div>
     <div style="clear:both;">
         <p><?= $article->body ?></p>
@@ -51,7 +53,8 @@
         ?>
     </div>
     <div style="clear:both;">
-        <?= anchor('comment/direct_create/' . $article->id, 'Comentar', array('class'=>'btn btn-primary')); ?>
+        <?= anchor('comment/direct_create/' . $article->id, "<i class='icon-comment icon-white'></i> Comentar", array('class'=>'btn btn-primary')); ?>
     </div>
     <?php endforeach; ?>
+
 </div>

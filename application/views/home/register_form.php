@@ -18,6 +18,11 @@
     <?= form_input(array('type'=>'password', 'name'=>'password', 'id'=>'password', 'value'=>set_value('password')));?>
 </div>
 
+<div class="control-group">
+    <?= form_label('Recordar contraseña: ', 'password', array('class'=>'control-label')); ?>
+    <input type="checkbox" name="remember" value="accept" />
+</div>
+
 <div class="form-actions">
     <?= form_button(array('type'=>'submit', 'content'=>'Aceptar', 'class'=>'btn btn-primary')); ?>
     <?= anchor('user/create', 'Registro', array('class'=>'btn')); ?>

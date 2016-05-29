@@ -24,15 +24,14 @@
     if ( ! function_exists('my_menu_ppal')) {
 
         function my_menu_ppal() {
-            $options = '<li>'.anchor('home/index', 'Inicio').'</li>';
+            $options = '<li>'.anchor('home/index', "<i class='icon-home icon-white'></i>").'</li>';
             $options = $options.'<li>'.anchor('home/about_us', 'Acerca De').'</li>';
 
             if (get_instance()->session->userdata('user')) {
-                $options = $options.'<li>'.anchor('home/show_user', 'Perfíl de usuario').'</li>';
-                $options = $options.'<li>'.anchor('home/change_password_form', 'Cambiar contraseña').'</li>';
-                $options = $options.'<li>'.anchor('home/closeSession', 'Salir').'</li>';
+                $options = $options.'<li>'.anchor('home/show_user', "<i class='icon-user icon-white'></i>").'</li>';
+                $options = $options.'<li>'.anchor('home/closeSession', "<i class='icon-off icon-white'></i>").'</li>';
             } else {
-                $options = $options.'<li>'.anchor('home/register_form', 'Ingreso').'</li>';
+                $options = $options.'<li>'.anchor('home/register_form', "<i class='icon-user icon-white'></i>").'</li>';
             }
 
             return $options;

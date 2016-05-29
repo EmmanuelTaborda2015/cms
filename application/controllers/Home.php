@@ -83,6 +83,13 @@
 
             if($this->form_validation->run() == FALSE) {
                 $this->register_form(); // Return to user form
+                
+            // Change expiration time if user check remember box
+            } elseif($this->input->post('remember')) {
+                $cookie = array('name' => 'ci_session', 'value' => $_COOKIE['ci_session'], 'expire' => '1209600');
+                $_COOKIE['ci_session'] = $cookie;
+                redirect('home/index');
+                
             } else {
                 redirect('home/index');
             }

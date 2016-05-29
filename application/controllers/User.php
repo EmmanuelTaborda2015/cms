@@ -99,7 +99,7 @@
             $this->form_validation->set_rules('login', 'Login', 'required|callback_no_reply');
             $this->form_validation->set_rules('email', 'eMail', 'required|valid_email');
             if($this->form_validation->run() == FALSE) {
-                $this->create();  // Display create article view
+                $this->create();  // Display create user view
                 
             } else {
                 $register['password'] = md5($this->user_library->send_email($register['email']));
