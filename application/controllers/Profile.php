@@ -24,7 +24,6 @@
             $data['content'] ='profile/index';
             $data['title'] = 'Profiles';
             $data['query'] = $this->Model_Profile->all();
-            
             $this->load->view('template',$data);
         }
         

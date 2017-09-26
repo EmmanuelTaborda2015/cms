@@ -84,7 +84,6 @@
             $data['content'] ='user/create_form';
             $data['title'] = 'Crear perfil';
             $data['profile'] = $this->Model_User->get_profiles();
-            
             $this->load->view('template',$data);
         }
         
