@@ -1,38 +1,38 @@
 <?php
-    defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') OR exit('No direct script access allowed');
 ?>
 
-<?= form_open('upload_file/insert', array('class'=>'form-horizontal')); ?>
-
-<legend>Crear registro</legend>
-
 <!--Format possible errors-->
+<?= my_validation_success($this->session->flashdata('message')); ?>
+
 <?= my_validation_errors(validation_errors()); ?>
 
+<?= form_open_multipart('upload_file/insert', 'id="file"', array('class'=>'form-horizontal'));?>
+
+<div class="page-header">
+    <h1>Cargar Archivos <small> Archivos usuario</small></h1>
+</div>
+
+
 <div class="control-group">
-    <?= form_label('Nombre: ', 'name', array('class'=>'control-label')); ?>
-    <?= form_input(array('type'=>'text', 'name'=>'name', 'id'=>'name', 'value'=>set_value('name')));?>
+    <?= form_label('Nombre de Archivo: ', 'name', array('class'=>'control-label'));?>
+    <?= form_dropdown('name', array("" => "Seleccione ...") + $type_file, set_value('name'), ' id="name" class="form-control"');?>
 </div>
 
 <div class="control-group">
-    <?= form_label('Login: ', 'login', array('class'=>'control-label')); ?>
-    <?= form_input(array('type'=>'text', 'name'=>'login', 'id'=>'login', 'value'=>set_value('login')));?>
+    <?= form_label('Usuario: ', 'user', array('class'=>'control-label')); ?>
+    <?= form_dropdown('user', array("" => "Seleccione ...") + $user, set_value('user'), ' id="user" class="form-control" ');?>
 </div>
 
 <div class="control-group">
-    <?= form_label('eMail: ', 'email', array('class'=>'control-label')); ?>
-    <?= form_input(array('type'=>'email', 'name'=>'email', 'id'=>'email', 'value'=>set_value('email')));?>
-</div>
-
-<div class="control-group">
-    <?= form_label('Profile: ', 'profile_id', array('class'=>'control-label')); ?>
-    <!--profile_id => profile_name-->
-    <?= form_dropdown('profile_id', $profile, 5, 'disabled=disabled'); ?>
+    <?= form_label('Archivo: ', 'file', array('class'=>'control-label'));?>
+    <?= form_input(array('type'=>'file', 'name'=>'file', 'id'=>'file', 'value'=>set_value('file')));?>
+    
 </div>
 
 <div class="form-actions">
-    <?= form_button(array('type'=>'submit', 'content'=>'Acertar', 'class'=>'btn btn-primary')); ?>
-    <?= anchor('user/index', 'Cancelar', array('class'=>'btn')); ?>
+    <?= form_button(array('type'=>'submit', 'content'=>'Aceptar', 'class'=>'btn btn-primary')); ?>
+    <?= anchor('upload_file', 'Cancelar', array('class'=>'btn')); ?>
 </div>
 
 <?= form_close(); ?>

@@ -6,7 +6,7 @@
         
 
         <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css" />
-        <link rel="stylesheet" type="text/css" href="/node_modules/boostrap/dist/css/bootstrap.css" />
+        <!-- >link rel="stylesheet" type="text/css" href="/node_modules/boostrap/dist/css/bootstrap.css" /-->
         
         <link href="<?= base_url('css/bootstrap.min.css') ?>" rel="stylesheet" media="screen">
         <link href="<?= base_url('css/bootstrap-responsive.css') ?>" rel="stylesheet">
@@ -14,7 +14,7 @@
         <link href="<?= base_url('css/style.css') ?>" rel="stylesheet">
                 
         <script type="text/javascript" src="//code.jquery.com/jquery-1.11.2.min.js"></script>
-        
+
         <title> Mi Sitio </title>
     </head>
 
@@ -69,7 +69,7 @@
         <script src="<?php base_url('js/bootstrap.min.js') ?>"></script>
         
 
-        <script src="/libs/jquery-2.1.1.min.js"></script>
+        <!-- script src="/libs/jquery-2.1.1.min.js"></script-->
         <script type="text/javascript" src="//cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
 
     </body>

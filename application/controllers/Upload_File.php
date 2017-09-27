@@ -7,17 +7,21 @@
         public function __construct(){
             parent::__construct();
             $this->load->model('Model_Upload_File');
+            
+            // Change form validation error
+            $this->form_validation->set_message('required', 'Debe ingresar un valor para %s');
 	}
 
         /**
          * Display the upload's file index
          */
         public function index() {
+        	
             $data['content'] ='upload_file/index';
             $data['title'] = 'Cargar Archivos';
             
             $type_file = $this->Model_Upload_File->get_type_files();
-            $users = $this->Model_Upload_File->get_users("5");
+            $users = $this->Model_Upload_File->get_users("5"); //Aqui va el tipo de usuario al que se le van a cargar los archivos.
             
             $type_file_list = array();
             
@@ -36,16 +40,6 @@
             $data['user'] = $user_list;
             
             $this->load->view('template',$data);
-        }
-        
-        
-        /**
-         * Search for an article
-         */
-        
-        function do_upload()
-        {
-        	
         }
         
         /**
@@ -105,7 +99,7 @@
          * Display create article view
          */
         public function create() {        
-            $data['content'] ='upload_file/create_form';
+            $data['content'] ='upload_file/index';
             $data['title'] = 'Cargar Archivo';
             $this->load->view('template',$data);
         }
@@ -118,41 +112,51 @@
         	$register = $this->input->post();
             
             // Field validation
-            /*$this->form_validation->set_rules('name', 'Nombre de Archivo', 'required');
+            $this->form_validation->set_rules('name', 'Nombre de Archivo', 'required');
+            $this->form_validation->set_rules('user', 'Usuario', 'required');
+            
+            if (empty($_FILES['file']['name']))
+            {
+            	$this->form_validation->set_rules('file', 'Archivo', 'required');
+            }
+            
             if($this->form_validation->run() == FALSE) {
-            	$this->create();  // Display create article view
+            	$this->index(); 
             	
             } else {
-            	$register['user_id'] = $this->session->userdata('user_id');
-            	$register['created'] = date('Y/m/d H:i');
-            	$register['updated'] = date('Y/m/d H:i');
             	
-            	$this->Model_Article->insert($register);
-            	redirect('article/index');
-            }*/
-            
-            $config['upload_path'] = './uploads/';
-            $config['allowed_types'] = 'gif|jpg|png';
-            $config['max_size']	= '100';
-            $config['max_width']  = '1024';
-            $config['max_height']  = '768';
-            
-            $this->load->library('upload', $config);
-            
-            if ( ! $this->upload->do_upload())
-            {
-            	$error = array('error' => $this->upload->display_errors());
+            	$config['upload_path'] = './uploads/';
+            	$config['allowed_types'] = 'gif|jpg|png|pdf';
+            	$config['max_size']	= '100';
+            	$config['max_width']  = '1024';
+            	$config['max_height']  = '768';
             	
-            	$this->load->view('upload_form', $error);
+            	$this->load->library('upload', $config);
+            	
+            	$name_field = "file";
+            	
+            	if ( ! $this->upload->do_upload($name_field))
+            	{
+            		
+            		$error = array('error' => $this->upload->display_errors());
+            		
+            		$this->load->view('upload_form', $error);
+            	}
+            	else
+            	{
+            		$data['creator'] = $this->session->userdata('user_id');
+            		$data['owner'] = $register['user'];
+            		$data['type_file'] =  $register['name'];
+            		$data['path'] =  $this->upload->data()["full_path"];
+            		
+            		$this->Model_Upload_File->insert($data);
+            		
+            		$this->session->set_flashdata('message', 'Ha sido cargado correctamente el archivo.');
+            		
+            		redirect('upload_file/index/');
+            	}
             }
-            else
-            {
-            	$data = array('upload_data' => $this->upload->data());
-            	
-            	$this->load->view('upload_success', $data);
-            }
             
-           
         }
         
         /**

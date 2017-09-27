@@ -86,7 +86,7 @@
          */
         function insert($register) {
             $this->db->set($register);
-            $this->db->insert('article');
+            $this->db->insert('file');
         }
         
         /**
