@@ -5,6 +5,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <!--Format possible errors-->
 <?= my_validation_success($this->session->flashdata('message')); ?>
 
+<?= my_validation_alert($this->session->flashdata('alert')); ?>
+
 <?= my_validation_errors(validation_errors()); ?>
 
 <?= form_open_multipart('upload_file/insert', 'id="file"', array('class'=>'form-horizontal'));?>

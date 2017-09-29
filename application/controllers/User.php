@@ -97,14 +97,17 @@
             $this->form_validation->set_rules('name', 'Nombre', 'required');
             $this->form_validation->set_rules('login', 'Login', 'required|callback_no_reply');
             $this->form_validation->set_rules('email', 'eMail', 'required|valid_email');
+            $this->form_validation->set_rules('password', 'Clave', 'required');
+            $this->form_validation->set_rules('rewrite_password', 'Repita Clave', 'required|matches[password]');
+            
             if($this->form_validation->run() == FALSE) {
                 $this->create();  // Display create user view
                 
             } else {
-                $register['password'] = md5($this->user_library->send_email($register['email']));
+            	unset($register['rewrite_password']);
+            	$register['password'] = md5($register['password']);
                 $register['created'] = date('Y/m/d H:i');
                 $register['updated'] = date('Y/m/d H:i');
-                $register['profile_id'] = 5;  // Default user creation
                 
                 $this->Model_User->insert($register);
                 redirect('home/register_form');

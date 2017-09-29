@@ -1,38 +1,66 @@
-<?php
-    defined('BASEPATH') OR exit('No direct script access allowed');
-?>
+<div class="page-header">
+    <h1>Documentos Usuarios <small> Archivos cargados</small></h1>
+</div>
 
 <!--Format possible errors-->
 <?= my_validation_success($this->session->flashdata('message')); ?>
 
 <?= my_validation_errors(validation_errors()); ?>
 
-<?= form_open_multipart('upload_file/insert', 'id="file"', array('class'=>'form-horizontal'));?>
+<?= my_validation_alert($this->session->flashdata('alert')); ?>
 
-<div class="page-header">
-    <h1>Cargar Archivos <small> Archivos usuario</small></h1>
-</div>
+<table id="table_id" class="display table table-condensed table-bordered">
+    <thead>
+        <tr>
+            <th>Nombre del Archivo</th>
+            <th>Creador</th>
+            <th>Propietario</th>
+            <th>No. Carga</th>
+            <th>Ver</th>
+            <th>Descargar</th>
+            <th>Actualizar</th>
+        </tr>
+    </thead>
 
-
-<div class="control-group">
-    <?= form_label('Nombre de Archivo: ', 'name', array('class'=>'control-label'));?>
-    <?= form_dropdown('name', array("" => "Seleccione ...") + $type_file, set_value('name'), ' id="name" class="form-control"');?>
-</div>
-
-<div class="control-group">
-    <?= form_label('Usuario: ', 'user', array('class'=>'control-label')); ?>
-    <?= form_dropdown('user', array("" => "Seleccione ...") + $user, set_value('user'), ' id="user" class="form-control" ');?>
-</div>
-
-<div class="control-group">
-    <?= form_label('Archivo: ', 'file', array('class'=>'control-label'));?>
-    <?= form_input(array('type'=>'file', 'name'=>'file', 'id'=>'file', 'value'=>set_value('file')));?>
+    <tbody>
+        <?php foreach ($query as $register):?>
+        <tr>
+            <!-- use a new segment -->
+            <td><?= $register->description ?></td>
+            <td><?= $register->creator ?></td>
+            <td><?= $register->owner ?></td>
+            <td><?= $register->count ?></td>
+            <td><?= anchor(null, "<i class='icon-file'></i>", array('onclick' => "return confirm('$register->path')")); ?></td>
+            <td><?= anchor('Download_File/download/' . $register->id_file, "<i class='icon-download-alt'></i>"); ?></td>
+            <td><?= anchor('Upload_File/edit/' . $register->id_file, "<i class='icon-refresh'></i>"); ?></td>
+            
+        </tr>
+        <?php endforeach; ?>
+    </tbody>
     
+</table>
+
+<?= anchor('upload_file/create', "<i class='icon-pencil icon-white'></i> Cargar Archivo", array('class'=>'btn btn-primary')); ?>
+
+<div id="visor_pdf">
+	<object id="pdf" data="" type="application/pdf" width="600px" height="450px" />
 </div>
 
-<div class="form-actions">
-    <?= form_button(array('type'=>'submit', 'content'=>'Aceptar', 'class'=>'btn btn-primary')); ?>
-    <?= anchor('upload_file', 'Cancelar', array('class'=>'btn')); ?>
-</div>
+<script type="text/javascript" src="<?php echo base_url('js/datatable.js');?>" ></script>
 
-<?= form_close(); ?>
+<script>
+$('#visor_pdf').dialog({
+    autoOpen: false,
+    title: 'Archivo',
+    minHeight: 500,
+    minWidth:600
+});
+$('#opener').click(function() {
+    
+});
+function confirm(path) {
+	$('#pdf').attr('data', path);
+	$('#visor_pdf').dialog('open');
+    return false;
+}
+</script>

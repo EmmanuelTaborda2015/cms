@@ -16,7 +16,8 @@
             $this->db->select('file.*, type_file.description');
             $this->db->from('file');
             $this->db->join('type_file', 'type_file.id_type_file = file.type_file', '');
-            $this->db->where('file.owner', $user);
+            $data = array("file.owner"=>$user, "file.registration_status"=>"AC");
+            $this->db->where($data);
             $query = $this->db->get();
             return $query->result();
         }

@@ -12,7 +12,7 @@
             if ($errors) {
                 $exitAlert = '<div class="alert alert-error">';
                 $exitAlert = $exitAlert.'<button type="button" class="close" data-dismiss="alert"> × </button>';
-                $exitAlert = $exitAlert.'<h4> Mensajes Validaci�n </h4></br>';
+                $exitAlert = $exitAlert.'<h4> Mensajes Validaci&oacute;n </h4></br>';
                 $exitAlert = $exitAlert.'<small>'.$errors.'</small>';
                 $exitAlert = $exitAlert.'</div>';
             }
@@ -75,6 +75,25 @@
     			$exitAlert = '<div class="alert alert-success">';
     			$exitAlert = $exitAlert.'<button type="button" class="close" data-dismiss="alert"> × </button>';
     			$exitAlert = $exitAlert.'<h4> Registro Exitoso </h4>';
+    			$exitAlert = $exitAlert.'<small>'.$message.'</small>';
+    			$exitAlert = $exitAlert.'</div>';
+    			
+    		}
+    		
+    		return $exitAlert;
+    	}
+    }
+    
+    if ( ! function_exists('my_validation_alert')){
+    	
+    	function my_validation_alert($message) {
+    		#Message for error alerts
+    		$exitAlert = '';
+    		
+    		if ($message != "") {
+    			$exitAlert = '<div class="alert alert-error">';
+    			$exitAlert = $exitAlert.'<button type="button" class="close" data-dismiss="alert"> × </button>';
+    			$exitAlert = $exitAlert.'<h4> Error </h4>';
     			$exitAlert = $exitAlert.'<small>'.$message.'</small>';
     			$exitAlert = $exitAlert.'</div>';
     		}

@@ -41,7 +41,7 @@ $('#opener').click(function() {
     
 });
 function confirm(path) {
-	//$('#pdf').attr('data', path);
+	$('#pdf').attr('data', path);
 	$('#visor_pdf').dialog('open');
     return false;
 }

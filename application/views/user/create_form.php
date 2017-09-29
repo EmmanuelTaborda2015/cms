@@ -25,9 +25,19 @@
 </div>
 
 <div class="control-group">
+    <?= form_label('Clave', 'password', array('class'=>'control-label')); ?>
+    <?= form_input(array('type'=>'password', 'name'=>'password', 'id'=>'password', 'value'=>set_value('password'))); ?>
+</div>
+ 
+<div class="control-group">
+    <?= form_label('Repita la Clave', 'rewrite_password', array('class'=>'control-label')); ?>
+    <?= form_input(array('type'=>'password', 'name'=>'rewrite_password', 'id'=>'rewrite_password', 'value'=>set_value('rewrite_password'))); ?>
+</div>
+
+<div class="control-group">
     <?= form_label('Profile: ', 'profile_id', array('class'=>'control-label')); ?>
     <!--profile_id => profile_name-->
-    <?= form_dropdown('profile_id', $profile, 5, 'disabled=disabled'); ?>
+    <?= form_dropdown('profile_id', $profile, 1, ''); ?>
 </div>
 
 <div class="form-actions">

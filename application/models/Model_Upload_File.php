@@ -16,98 +16,63 @@
          * @return type query result
          */
         function get_type_files() {
-            $this->db->select('type_file.id_type_file, type_file.description');
-            $this->db->from('type_file');
-            $query = $this->db->get();
-            return $query->result();
+        	$this->db->select('type_file.id_type_file, type_file.description');
+        	$this->db->from('type_file');
+        	$query = $this->db->get();
+        	return $query->result();
         }
         
         
         function get_users($profile) {
         	$this->db->select('user.id, user.name');
         	$this->db->from('user');
-        	//$this->db->where('user.profile_id', $profile);
+        	$this->db->where('user.profile_id', $profile);
         	$query = $this->db->get();
         	return $query->result();
         }
         
         /**
-         * Display all article ordered by updated date
-         * @return type
+         * Display all files of user from table
+         * @return files
          */
-        function all_ordered() {
-            $this->db->select('article.*, user.name as author');
-            $this->db->from('article');
-            $this->db->join('user', 'article.user_id = user.id', 'left');
-            
-            // Order by updated date
-            $this->db->order_by('updated', 'desc');
-            $query = $this->db->get();
-            return $query->result();
+        function get_all_files() {
+        	$this->db->select('file.*, type_file.description, type_file.total, creator.name as creator, owner.name as owner');
+        	$this->db->from('file');
+        	$this->db->join('type_file', 'type_file.id_type_file = file.type_file', '');
+        	$this->db->join('user as owner', 'owner.id = file.owner', '');
+        	$this->db->join('user as creator', 'creator.id = file.creator', '');
+        	//$this->db->where('file.owner', $user);
+        	$query = $this->db->get();
+        	return $query->result();
         }
         
         /**
-         * Filter and order by field and value
-         * 
-         * @param type $field
-         * @param type $value
-         * @return type
-         */
-        function all_filter($field, $value) {
-            $this->db->select('article.*, user.name as author');
-            $this->db->from('article');
-            $this->db->join('user', 'article.user_id = user.id', 'left');
-            
-            // Order by updated date
-            $this->db->order_by('updated', 'desc');
-            $this->db->like($field, $value);
-            $query = $this->db->get();
-            return $query->result();
-        }
-        
-        /**
-         * Find article by id
-         * 
-         * @param type $id
-         * @return type
-         */
-        function find($id) {
-            $this->db->select('article.*, user.name as author');
-            $this->db->from('article');
-            $this->db->join('user', 'article.user_id = user.id', 'left');
-            
-            $this->db->where('article.id', $id);
-            return $this->db->get()->row();
-        }
-        
-        /**
-         * Insert article on database
+         * Insert File on database
          * @param type $register
          */
         function insert($register) {
-            $this->db->set($register);
-            $this->db->insert('file');
+        	$this->db->set($register);
+        	$this->db->insert('file');
+        }
+        
+        function find($id) {
+        	$this->db->select('file.*, type_file.description, type_file.total');
+        	$this->db->from('file');
+        	$this->db->join('type_file', 'type_file.id_type_file = file.type_file', '');
+        	$this->db->where('file.id_file', $id);
+        	$query = $this->db->get();
+        	return $query->result();
         }
         
         /**
-         * Update article where id = register id
+         * Update file row by id
          * @param type $register
          */
         function update($register) {
-            $this->db->set($register);
-            $this->db->where('id', $register['id']);
-            $this->db->update('article');
+        	$this->db->set($register);
+        	$this->db->where('id_file', $register['id_file']);
+        	$this->db->update('file');
         }
-        
-        /**
-         * Delete article id
-         * @param type $id
-         */
-        function delete($id) {
-            $this->db->where('id', $id);
-            $this->db->delete('article');
-        }
-        
     }
 
 ?>
