@@ -18,7 +18,7 @@
         <!--<?= $article->punctuation ?>-->
     </div>
     <div class="pull-left">
-        <h2 class='text-info'><?= $article->title ?></h2>
+        <h1 class='text-info'><?= $article->title ?></h1>
         <p>
             <i class='icon-calendar'></i>
             <?php

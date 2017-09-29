@@ -23,7 +23,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 <div class="control-group">
     <?= form_label('Usuario: ', 'user', array('class'=>'control-label')); ?>
-    <?= form_dropdown('user', array("" => "Seleccione ...") + $user, $register->type_file, ' id="user" class="form-control" disabled=disabled');?>
+    <?= form_dropdown('user', array("" => "Seleccione ...") + $user, $register->owner, ' id="user" class="form-control" disabled=disabled');?>
 </div>
 
 <div class="control-group">
@@ -38,7 +38,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <div class="form-actions">
     <?= form_button(array('type'=>'submit', 'content'=>'Aceptar', 'class'=>'btn btn-primary', 'onClick'=>"return remove_disabled()")); ?>
     <?= anchor('upload_file/index', 'Cancelar', array('class'=>'btn')); ?>
-    <?= anchor('upload_file/delete/' . $register->id_file, 'Eliminar', array('class'=>'btn btn-warning', 'onClick'=>"return confirm('¿Está seguro que desea eliminar el archivo?')")); ?>
+   <!-- <?= anchor('upload_file/delete/' . $register->id_file, 'Eliminar', array('class'=>'btn btn-warning', 'onClick'=>"return confirm('¿Está seguro que desea eliminar el archivo?')")); ?> -->
 </div>
 
 <script>

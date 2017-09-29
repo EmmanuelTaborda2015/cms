@@ -100,13 +100,24 @@
             		$data['creator'] = $this->session->userdata('user_id');
             		$data['owner'] = $register['user'];
             		$data['type_file'] =  $register['name'];
-            		$data['path'] =  $this->upload->data()["full_path"];
+            		$data['path'] =  $fullPath = base_url() .'uploads/'. $this->upload->data()['file_name'];
+            		//$data['path'] =  $this->upload->data()["full_path"];
             		
-            		$this->Model_Upload_File->insert($data);
+            		$validate = $this->Model_Upload_File->exist_file($data);
             		
-            		$this->session->set_flashdata('message', 'Ha sido cargado correctamente el archivo.');
+            		if(count($validate) > 0){
+            			
+            			$this->session->set_flashdata('alert', 'Este Archivo ya existe para este usuario, Seleccione la opci&oacute;n actualizar para subir una nueva versi&oacute;n del documento.');
+            			
+            			redirect('upload_file/index/');
+            		}else{
+            			$this->Model_Upload_File->insert($data);
+            			
+            			$this->session->set_flashdata('message', 'Ha sido cargado correctamente el archivo.');
+            			
+            			redirect('upload_file/index/');
+            		}
             		
-            		redirect('upload_file/index/');
             	}
             }
             

@@ -44,6 +44,20 @@
         }
         
         /**
+         * Find all menu ordered by the customize order field
+         * @return type
+         */
+        function all_profile($user) {
+        	$this->db->select('menu.*');
+        	$this->db->from('menu');
+        	$this->db->join('menu_profile', 'menu.id = menu_profile.menu_id', '');
+        	$this->db->join('user', 'user.profile_id = menu_profile.profile_id', '');
+        	$this->db->where("user.id", $user);
+        	$query = $this->db->get();
+        	return $query->result();
+        }
+        
+        /**
          * Find menu by id
          * 
          * @param type $id

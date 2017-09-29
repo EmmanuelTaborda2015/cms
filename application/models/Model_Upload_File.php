@@ -31,6 +31,15 @@
         	return $query->result();
         }
         
+        function exist_file($data) {
+        	$this->db->select('file.*');
+        	$this->db->from('file');
+        	$data = array("file.owner"=>$data['owner'],"type_file"=>$data['type_file']);
+        	$this->db->where($data);
+        	$query = $this->db->get();
+        	return $query->result();
+        }
+        
         /**
          * Display all files of user from table
          * @return files
@@ -42,6 +51,7 @@
         	$this->db->join('user as owner', 'owner.id = file.owner', '');
         	$this->db->join('user as creator', 'creator.id = file.creator', '');
         	//$this->db->where('file.owner', $user);
+        	$this->db->order_by('type_file.id_type_file', 'asc');
         	$query = $this->db->get();
         	return $query->result();
         }

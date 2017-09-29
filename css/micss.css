@@ -6,6 +6,9 @@
  .sidebar-nav {
   padding: 9px 0;
  }
+.hero-unit {
+  padding: 20px!important;
+}
 
  /* Large desktop */
  @media (min-width: 1200px) {

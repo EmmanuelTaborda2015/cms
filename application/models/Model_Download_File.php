@@ -13,11 +13,13 @@
          * @return files
          */
         function get_files($user) {
+        	$this->db->order_by('type_file.id_type_file', 'asc');
             $this->db->select('file.*, type_file.description');
             $this->db->from('file');
             $this->db->join('type_file', 'type_file.id_type_file = file.type_file', '');
-            $data = array("file.owner"=>$user, "file.registration_status"=>"AC");
-            $this->db->where($data);
+            $this->db->where("file.registration_status","AC");
+            $where = "(file.owner = '$user' or file.owner = '2')";
+            $this->db->where($where);
             $query = $this->db->get();
             return $query->result();
         }

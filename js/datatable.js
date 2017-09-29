@@ -3,5 +3,6 @@ $(document).ready( function() {
     	"columnDefs": [
             {"className": "dt-center", "targets": "_all"}
           ],
+          "order": [],
     });
 });

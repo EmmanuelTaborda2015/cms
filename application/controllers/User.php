@@ -110,7 +110,7 @@
                 $register['updated'] = date('Y/m/d H:i');
                 
                 $this->Model_User->insert($register);
-                redirect('home/register_form');
+                redirect('user/index');
             }
         }
         

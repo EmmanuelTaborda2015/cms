@@ -25,7 +25,6 @@
 
         function my_menu_ppal() {
             $options = '<li>'.anchor('home/index', "<i class='icon-home icon-white'></i>").'</li>';
-            $options = $options.'<li>'.anchor('home/about_us', 'Acerca De').'</li>';
 
             if (get_instance()->session->userdata('user')) {
                 $options = $options.'<li>'.anchor('home/show_user', "<i class='icon-user icon-white'></i>").'</li>';
@@ -46,8 +45,7 @@
             if (get_instance()->session->userdata('user')) {
                 get_instance()->load->model('Model_Menu');
                 $options = '';
-                
-                $query = get_instance()->Model_Menu->all_ordered();
+                $query = get_instance()->Model_Menu->all_profile(get_instance()->session->userdata('user_id'));
                 foreach ($query as $option) {
                     if ($option->url !='') {
                         $link = $option->url;

@@ -29,7 +29,7 @@
             <td><?= $register->description ?></td>
             <td><?= $register->creator ?></td>
             <td><?= $register->owner ?></td>
-            <td><?= $register->count ?></td>
+            <td><?= $register->count ?> de <?= $register->total ?></td>
             <td><?= anchor(null, "<i class='icon-file'></i>", array('onclick' => "return confirm('$register->path')")); ?></td>
             <td><?= anchor('Download_File/download/' . $register->id_file, "<i class='icon-download-alt'></i>"); ?></td>
             <td><?= anchor('Upload_File/edit/' . $register->id_file, "<i class='icon-refresh'></i>"); ?></td>
