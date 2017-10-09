@@ -9,7 +9,7 @@
             
             // Load model and library
             $this->load->model('Model_Download_File');
-            $this->load->library('user_library');
+            $this->load->library('User_Library');
             
 	}
         

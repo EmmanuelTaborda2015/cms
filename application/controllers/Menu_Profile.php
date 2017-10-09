@@ -9,7 +9,7 @@
             
             // Load model and library
             $this->load->model('Model_Menu_Profile');
-            $this->load->library('menu_profile_library');
+            $this->load->library('Menu_Profile_Library');
             
             // Change form validation error
             $this->form_validation->set_message('no_reply', 'Existe otro registro con el mismo nombre');

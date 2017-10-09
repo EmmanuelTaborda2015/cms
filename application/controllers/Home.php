@@ -18,8 +18,8 @@
             $this->load->model('Model_Comment');
             
             // Load libraries
-            $this->load->library('user_library');
-            $this->load->library('crop_library');
+            $this->load->library('User_Library');
+            $this->load->library('Crop_Library');
 	}
 
         /**

@@ -9,7 +9,7 @@
             
             // Load model and library
             $this->load->model('Model_Profile');
-            $this->load->library('profile_library');
+            $this->load->library('Profile_Library');
             
             // Change form validation error
             $this->form_validation->set_message('required', 'Debe ingresar un valor para %s');
