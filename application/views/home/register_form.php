@@ -25,7 +25,6 @@
 
 <div class="form-actions">
     <?= form_button(array('type'=>'submit', 'content'=>'Aceptar', 'class'=>'btn btn-primary')); ?>
-    <?= anchor('user/create', 'Registro', array('class'=>'btn')); ?>
     <?= anchor('home/index', 'Cancelar', array('class'=>'btn')); ?>
 </div>
 
