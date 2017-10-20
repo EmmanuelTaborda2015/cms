@@ -39,7 +39,7 @@
          * @return type
          */
         public function no_reply() {
-            return $this->comment_library->no_reply($this->input->post());
+            return $this->Comment_Library->no_reply($this->input->post());
         }
 
         /**

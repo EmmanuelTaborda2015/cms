@@ -45,7 +45,7 @@
          * @return type
          */
         public function no_reply() {
-            return $this->menu_profile_library->no_reply($this->input->post());
+            return $this->Menu_Profile_Library->no_reply($this->input->post());
         }
 
         /**

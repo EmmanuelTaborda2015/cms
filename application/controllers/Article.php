@@ -35,7 +35,7 @@
          * @return type
          */
         public function no_reply() {
-            return $this->article_library->no_reply($this->input->post());
+            return $this->Article_Library->no_reply($this->input->post());
         }
 
         /**

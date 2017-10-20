@@ -47,7 +47,7 @@
          * @return type
          */
         public function my_validation() {
-            return $this->menu_library->my_validation($this->input->post());
+            return $this->Menu_Library->my_validation($this->input->post());
         }
 
         /**
@@ -131,7 +131,7 @@
             $data['title'] = 'Accesos de ' . $this->Model_Menu->find($menu_id)->name;
             
             // Get assigned and not assigned profiles for user
-            $profiles = $this->menu_library->get_profiles($menu_id);
+            $profiles = $this->Menu_Library->get_profiles($menu_id);
             $data['query_left'] = $profiles[0];
             $data['query_right'] = $profiles[1];
             
@@ -146,8 +146,8 @@
             $profile_id = $this->uri->segment(3);
             $menu_id = $this->uri->segment(4);
             
-            $this->load->library('menu_profile_library');
-            $this->menu_profile_library->set_access($profile_id, $menu_id);
+            $this->load->library('Menu_Profile_Library');
+            $this->Menu_Profile_Library->set_access($profile_id, $menu_id);
             redirect('menu/menu_profile/' . $menu_id);
             
         }
@@ -159,8 +159,8 @@
             $profile_id = $this->uri->segment(3);
             $menu_id = $this->uri->segment(4);
                         
-            $this->load->library('menu_profile_library');
-            $this->menu_profile_library->deny_access($profile_id, $menu_id);
+            $this->load->library('Menu_Profile_Library');
+            $this->Menu_Profile_Library->deny_access($profile_id, $menu_id);
             redirect('menu/menu_profile/' . $menu_id);
         }
         
